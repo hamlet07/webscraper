@@ -48,7 +48,7 @@ class Scraper:
 
 
 add_divs = []
-with open('C:/Users/Mateusz/Documents/webscraper/jobs.txt', 'w', encoding="utf-8") as f:
+with open('jobs.txt', 'w', encoding="utf-8") as f:
     for page in range(1, 20):
         scrape = Scraper(done = 'https://theprotocol.it/filtry/1;s?pageNumber=', page = page)
         item = scrape()
