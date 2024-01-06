@@ -48,7 +48,7 @@ class Scraper:
         return jobs
 
 today = date.today()
-d = today.strftime("Y%m%d")
+d = today.strftime("%Y%m%d")
 
 add_divs = []
 with open('jobs'+d+'.txt', 'w', encoding="utf-8") as f:
