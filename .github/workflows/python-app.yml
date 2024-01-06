@@ -1,6 +1,8 @@
 name: Webscraper application
 
 on:
+  schedule:
+    - cron: '0 17 * * 1'
   push:
     branches: [ "main" ]
   pull_request:

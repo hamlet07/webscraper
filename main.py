@@ -1,5 +1,6 @@
 from typing import Any
 from bs4 import BeautifulSoup as bs
+from datetime import date
 import requests
 import time
 import boto3
@@ -46,9 +47,11 @@ class Scraper:
             jobs.append([t_list, [s_1_min, s_1_max, s_2_min, s_2_max], [c1, clast]])
         return jobs
 
+today = date.today()
+d = today.strftime("Y%m%d")
 
 add_divs = []
-with open('jobs.txt', 'w', encoding="utf-8") as f:
+with open('jobs'+d+'.txt', 'w', encoding="utf-8") as f:
     for page in range(1, 20):
         scrape = Scraper(done = 'https://theprotocol.it/filtry/1;s?pageNumber=', page = page)
         item = scrape()
@@ -57,4 +60,4 @@ with open('jobs.txt', 'w', encoding="utf-8") as f:
 f.close()
 
 s3 = boto3.resource('s3')
-s3.Bucket("hamlet07-test-001").put_object(Key="jobs.txt", Body=str(add_divs))
+s3.Bucket("hamlet07-test-001").put_object(Key="jobs_"+d+".txt", Body=str(add_divs))
